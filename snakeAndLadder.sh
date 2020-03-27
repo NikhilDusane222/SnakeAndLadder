@@ -1,7 +1,6 @@
 #!/bin/bash -x
 
 printf "Welcome to Snake and Ladder game \n"
-
 #Constants
 POSITION=0
 WINNING_POSITION=100
@@ -14,7 +13,7 @@ dieCountForPlayer1=0
 dieCountForPlayer2=0
 positionForPlayer1=0
 positionForPlayer2=0
-echo "Welcome to Snake And Ladder Game"
+
 #Winning condition
 function playSnakeAndLadder()
 {
@@ -57,25 +56,17 @@ while(($positionForPlayer1!=$WINNING_POSITION && $positionForPlayer2!=$WINNING_P
 do
 	((dieCountForPlayer1++))
 	positionForPlayer1="$(playSnakeAndLadder $positionForPlayer1)"
-	trackPositionForPlayer1[$dieCountForPlayer1]=$((positionForPlayer1))
+	printf "Player 1 die count $dieCountForPlayer1 : Position $positionForPlayer1 \n"
 	((dieCountForPlayer2++))
 	positionForPlayer2="$(playSnakeAndLadder $positionForPlayer2)"
-	trackPositionForPlayer2[$dieCountForPlayer2]=$((positionForPlayer2))
+	printf "Player 2 die count $dieCountForPlayer1 : Position $positionForPlayer2 \n"
 done
 
 # Condition to know which player won
 
 if(($positionForPlayer1==$WINNING_POSITION))
 then
-	echo "Congracts!!!!!player 1 won. you rolled the die for $dieCountForPlayer1 times"
-	for count in ${!trackPositionForPlayer1[@]}
-	do
-		echo "Position at die count $count : ${trackPositionForPlayer1[count]}"
-	done
+	printf "Congracts!!!!!player 1 won. you rolled the die for $dieCountForPlayer1 times \n"
 else
-	echo "Congracts!!!!!player 2 won. you rolled the die for $dieCountForPlayer2 times"
-	for count in ${!trackPositionForPlayer2[@]}
-	do
-		echo "Position at die count $count : ${trackPositionForPlayer2[count]}"
-	done
+	printf "Congracts!!!!!player 2 won. you rolled the die for $dieCountForPlayer2 times \n"
 fi
